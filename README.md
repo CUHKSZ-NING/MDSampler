@@ -5,7 +5,6 @@ Code for manuscript `MDSampler: Meta-Distribution-Based Ensemble Sampler for Imb
 * Required Python 3 packages:
     1. `numpy==1.21.5`;
     2. `sklearn` (https://github.com/scikit-learn/scikit-learn);
-    3. `scipy==1.7.3`.
 
 * MDSampler is compatible with most sklearn APIs but is not strictly tested.
 
