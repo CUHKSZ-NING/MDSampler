@@ -25,8 +25,6 @@ class MDSampler(object):
     def fit(self, X, y, X_test=None, y_test=None):
         X_L = X[np.where(y != -1)]
         
-        tree = None
-        
         X_positive = X[np.where(y == 1)]
         X_negative = X[np.where(y == 0)]
         X_unlabeled = X[np.where(y == -1)]
@@ -40,6 +38,8 @@ class MDSampler(object):
         self.IR = n_negative / n_positive
 
         weight = np.ones(len(X_L[0]))
+
+        tree = None
 
         if self.adaptive_instance_interpolation:
             X_positive_temp = deepcopy(X_positive)
