@@ -8,7 +8,7 @@ from infinite_selection import InfFS
 
 class MDSampler(object):
     def __init__(self, base_estimator, n_estimators=10, n_bins=10, threshold=-1, warmup_rounds=5, ratio_pseudo=1.0,
-                 sampling_IR=1.0, ratio_under=1.0, rescale_variance=False, plus=False):
+                 sampling_IR=1.0, ratio_under=1.0, rescale_variance=False, plus=True):
         self.base_estimator = deepcopy(base_estimator)
         self.n_estimators = n_estimators
         self.n_bins = n_bins
