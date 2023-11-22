@@ -1,6 +1,6 @@
 # MDSampler
 
-Code for manuscript `MDSampler: Meta-Distribution-Based Ensemble Sampler for Imbalanced Semi-Supervised Learning`. MDSampler is a unified framework that combines SSL, IL, and ensemble learning via iterative instance under-sampling and cascade classifier aggregation.
+Code for manuscript `MDSampler: Meta-Distribution-Based Ensemble Sampler for Imbalanced Semi-Supervised Learning`. MDSampler is a unified framework that combines semi-supervised learning, imbalanced learning, and ensemble learning via iterative instance under-sampling and cascade classifier aggregation.
 
 * Required Python 3 packages:
     1. `numpy==1.21.5`;
