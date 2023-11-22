@@ -20,5 +20,5 @@ Code for manuscript `MDSampler: Meta-Distribution-Based Ensemble Sampler for Imb
     2. `feature_ranker`: Feature selection (ranking) object that gives weights to features in $\mathcal{X}$;
     3. `k_sup`: The number of warm-up training iterations;
     4. `k_semi`: The number of semi-supervised learning iterations;
-    5. `w`: Controls the amount of bins in MDSampler (i.e. $w^2$ bins in total);
-    6. `adaptive_instance_interpolation`: Set to True if adaptive instance interpolation is employed.
+    5. `w`: Controls the number of bins in MDSampler (i.e., $w^2$ bins in total);
+    6. `adaptive_instance_interpolation`: When True, the adaptive instance interpolation module is employed.
