@@ -10,7 +10,7 @@ Code for manuscript `MDSampler: Meta-Distribution-Based Ensemble Sampler for Imb
 
 * Import: `from MDSampler import MDSampler`.
 
-* Train: `fit(X, y)`, with target $\textbf{y}_i \in (-1, 0, 1)^l$ as the labels: -1 denotes unlabeled samples, 0 denotes majority samples, and 1 denotes minority samples.
+* Train: `fit(X, y)`, with target $\textbf{y}_i \in (-1, 0, 1)^l$ as the labels: $\textbf{y}_i = -1$ denotes the unlabeled sample, $\textbf{y}_i = 0$ denotes the majority sample, and $\textbf{y}_i = 1$ denotes the minority sample.
 
 * Predict: `predict(X)` (hard prediction), `predict_proba(X)` (probalistic prediction).
 
