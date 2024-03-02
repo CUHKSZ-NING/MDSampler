@@ -22,4 +22,4 @@ Code for manuscript `MDSampler: Meta-Distribution-Based Ensemble Sampler for Imb
     5. `w`: Controls the number of bins in MDSampler (i.e., $w^2$ bins in total);
     6. `adaptive_instance_interpolation`: When True, the adaptive instance interpolation module is employed.
 
-<embed src="method.pdf" type="pdf" width="100%" height="600px" />
+![](Method.png)
