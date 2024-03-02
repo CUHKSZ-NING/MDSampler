@@ -1,9 +1,13 @@
 # MDSampler
 
-Code for manuscript `MDSampler: Meta-Distribution-Based Ensemble Sampler for Imbalanced Semi-Supervised Learning`. MDSampler is a unified framework that combines semi-supervised learning, imbalanced learning, and ensemble learning via iterative instance under-sampling and cascade classifier aggregation.
+## Overview
+
+Code for manuscript `MDSampler: Meta-Distribution-Based Ensemble Sampler for Imbalanced Semi-Supervised Learning`. MDSampler is a unified framework that integrates SSL, imbalanced learning, and ensemble learning via iterative instance under-sampling and cascade classifier aggregation. Specifically, MDSampler considers the confidence-diversity distribution of both labeled and unlabeled samples and obtains the so-called meta-distribution via 2-D histogram discretization. Sampling on the meta-distribution 1) assigns pseudo-labels to unlabeled data for SSL, 2) alleviates class imbalance since the sampling process is unbiased, 3) improves the diversity of the ensemble learning framework, and 4) is highly efficient and flexible. Additionally, an adaptive instance interpolation strategy is presented to further improve the quality of pseudo-labeled samples.
 
 ![](Method.png)
 **Figure 1.** Overview of the proposed MDSampler framework.
+
+## Usage
 
 * Required Python 3 packages:
     1. `numpy==1.21.5`;
@@ -24,6 +28,8 @@ Code for manuscript `MDSampler: Meta-Distribution-Based Ensemble Sampler for Imb
     4. `k_semi`: The number of semi-supervised learning iterations;
     5. `w`: Controls the number of bins in MDSampler (i.e., $w^2$ bins in total);
     6. `adaptive_instance_interpolation`: When True, the adaptive instance interpolation module is employed.
+
+## Visualization
 
 ![](Result.png)
 **Figure 2.** Decision boundaries and classification performance (AUPRC) of tested algorithms on the imbalanced Two Moons datasets with different levels of Gaussian noises. Blue dots, orange dots, and white dots denote labeled majority samples, labeled minority samples, and unlabeled minority samples, while unlabeled majority samples are not plotted for clarity. MDSampler consistently obtains more favorable decision boundaries and better classification performance. On the other hand, Self-Training, Co-Training, etc,  may fail (perform inferior to the Supervised Only case) on the imbalanced Two Moons datasets.
