@@ -22,7 +22,7 @@ Code for manuscript `MDSampler: Meta-Distribution-Based Ensemble Sampler for Imb
     5. `w`: Controls the number of bins in MDSampler (i.e., $w^2$ bins in total);
     6. `adaptive_instance_interpolation`: When True, the adaptive instance interpolation module is employed.
 
-![123](Method.png)
+![](Method.png)
 
 ![](Result.png)
-Figure2. Decision boundaries and classification performance (AUPRC) of tested algorithms on the imbalanced Two Moons datasets with different levels of Gaussian noises. Blue dots, orange dots, and white dots denote labeled majority samples, labeled minority samples, and unlabeled minority samples, while unlabeled majority samples are not plotted for clarity. MDSampler consistently obtains more favorable decision boundaries and better classification performance. On the other hand, Self-Training, Co-Training, etc,  may fail (perform inferior to the Supervised Only case) on the imbalanced Two Moons datasets.
+*Figure2.* Decision boundaries and classification performance (AUPRC) of tested algorithms on the imbalanced Two Moons datasets with different levels of Gaussian noises. Blue dots, orange dots, and white dots denote labeled majority samples, labeled minority samples, and unlabeled minority samples, while unlabeled majority samples are not plotted for clarity. MDSampler consistently obtains more favorable decision boundaries and better classification performance. On the other hand, Self-Training, Co-Training, etc,  may fail (perform inferior to the Supervised Only case) on the imbalanced Two Moons datasets.
