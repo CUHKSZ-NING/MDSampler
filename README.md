@@ -21,3 +21,4 @@ Code for manuscript `MDSampler: Meta-Distribution-Based Ensemble Sampler for Imb
     4. `k_semi`: The number of semi-supervised learning iterations;
     5. `w`: Controls the number of bins in MDSampler (i.e., $w^2$ bins in total);
     6. `adaptive_instance_interpolation`: When True, the adaptive instance interpolation module is employed.
+![image](https://github.com/CUHKSZ-NING/MDSampler/assets/85053203/ad94a4a8-9dc9-40e7-8fae-33a71c9a003d)
