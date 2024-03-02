@@ -32,8 +32,7 @@ MDSampler is a unified framework that integrates SSL, imbalanced learning, and e
 ## Visualization
 
 ![](Result.png)
-![](AUPRC.png)
 **Figure 2.** Decision boundaries and classification performance (AUPRC) of tested algorithms on the imbalanced Two Moons datasets with different levels of Gaussian noises. Blue dots, orange dots, and white dots denote labeled majority samples, labeled minority samples, and unlabeled minority samples, while unlabeled majority samples are not plotted for clarity. MDSampler consistently obtains more favorable decision boundaries and better classification performance. On the other hand, Self-Training, Co-Training, etc,  may fail (perform inferior to the Supervised Only case) on the imbalanced Two Moons datasets.
-
+<br/>
 ![](AUPRC.png)
 **Figure 3.** Training time and AUPRC scores of algorithms on [Credit Card Fraud](https://www.google.com) dataset with supervision ratio $\beta = 0.1$.
