@@ -5,6 +5,7 @@ Code for manuscript `MDSampler: Meta-Distribution-Based Ensemble Sampler for Imb
 ![](Method.png)
 **Figure 1.** Overview of the proposed MDSampler framework.
 
+<br/>
 
 * Required Python 3 packages:
     1. `numpy==1.21.5`;
