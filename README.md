@@ -23,3 +23,5 @@ Code for manuscript `MDSampler: Meta-Distribution-Based Ensemble Sampler for Imb
     6. `adaptive_instance_interpolation`: When True, the adaptive instance interpolation module is employed.
 
 ![](Method.png)
+
+![](Result.png)
