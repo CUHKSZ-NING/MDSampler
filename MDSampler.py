@@ -4,7 +4,7 @@ from copy import deepcopy
 from sklearn.neighbors import BallTree
 
 
-class MDSampler(object):
+class MDSampler(object):  # The Classifier Object
     def __init__(self, base_estimator, feature_ranker, k_sup=10, w=10, threshold=-1, k_semi=5, 
                  adaptive_instance_interpolation=True):
         self.base_estimator = deepcopy(base_estimator)
