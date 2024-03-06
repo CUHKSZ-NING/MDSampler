@@ -2,16 +2,17 @@ import numpy as np
 import random
 from copy import deepcopy
 from sklearn.neighbors import BallTree
+from sklearn.base import BaseEstimator
 
 
-class MDSampler(object):  # The Classifier Object
-    def __init__(self, base_estimator, feature_ranker, k_sup=10, w=10, threshold=-1, k_semi=5, 
+class MDSampler(BaseEstimator):
+    def __init__(self, base_estimator, feature_ranker, k_semi=10, w=10, threshold=-1, k_sup=5,
                  adaptive_instance_interpolation=True):
         self.base_estimator = deepcopy(base_estimator)
-        self.k_sup = k_sup
+        self.k_semi = k_semi
         self.w = w
         self.threshold = threshold
-        self.k_semi = k_semi
+        self.k_sup = k_sup
         self.adaptive_instance_interpolation = adaptive_instance_interpolation
 
         self.estimators = {}
@@ -24,7 +25,9 @@ class MDSampler(object):  # The Classifier Object
 
     def fit(self, X, y, X_test=None, y_test=None):
         X_L = X[np.where(y != -1)]
-        
+
+        tree = None
+
         X_positive = X[np.where(y == 1)]
         X_negative = X[np.where(y == 0)]
         X_unlabeled = X[np.where(y == -1)]
@@ -39,12 +42,13 @@ class MDSampler(object):  # The Classifier Object
 
         weight = np.ones(len(X_L[0]))
 
-        tree = None
-
         if self.adaptive_instance_interpolation:
             X_positive_temp = deepcopy(X_positive)
             if self.adaptive_instance_interpolation:
-                weight = self.feature_ranker(X)
+                # weight = self.feature_ranker(X)
+                y_L = y[np.where(y != -1)]
+                [_, weight] = self.feature_ranker(X_L, y_L, alpha=0.5, supervision=True, verbose=False)
+                weight = weight.astype(float)
                 if max(weight) == 0:
                     weight = np.zeros(len(weight))
                 else:
@@ -53,19 +57,23 @@ class MDSampler(object):  # The Classifier Object
                     X_positive_temp[..., j] *= weight[j]
             tree = BallTree(X_positive_temp, leaf_size=int(np.log2(n_positive) + 0.5))
 
-        for i in range(0, self.k_semi + self.k_sup):
+        for i in range(0, self.k_sup + self.k_semi):
             # Supervised case:
-            if i < self.k_semi:
+            if i < self.k_sup:
                 if i == 0:
                     X_N = X_negative[random.sample(range(n_negative), n_under)]
                 else:
-                    X_N = X_negative[self.histogram_sampler(n_under, task='N')]
+                    if self.IR == 1:
+                        X_N = X_negative[random.sample(range(n_negative), n_under)]
+                    else:
+                        X_N = X_negative[self.histogram_sampler(n_under, task='N')]
                 X_meta = np.concatenate((X_positive[random.sample(range(n_positive), n_under)], X_N))
                 y_meta = np.concatenate((np.ones(n_under), np.zeros(len(X_N))))
 
             # SSL case
             else:
-                n_samples = int(n_under * (i - self.k_semi + 1) / self.k_sup + 0.5)
+                n_samples = int(n_under * (i - self.k_sup + 1) / self.k_semi + 0.5)
+
                 X_N = X_negative[self.histogram_sampler(int(n_under + 0.5), task='N')]
                 X_meta = np.concatenate((X_positive[random.sample(range(n_positive), n_under)], X_N))
                 y_meta = np.concatenate((np.ones(n_under), np.zeros(len(X_N))))
@@ -99,14 +107,15 @@ class MDSampler(object):  # The Classifier Object
                         y_meta = np.concatenate((y_meta, np.zeros(len(X_UN))))
 
             model = deepcopy(self.base_estimator)
+
             if len(y_meta) - sum(y_meta) != sum(y_meta):
                 print('%d %d <---- %d' % (len(y_meta) - sum(y_meta), sum(y_meta), i))
 
             model.fit(X_meta, y_meta)
-            
+
             self.estimators[i] = deepcopy(model)
 
-            if i != self.k_semi + self.k_sup - 1:
+            if i != self.k_sup + self.k_semi - 1:
                 y_pred = model.predict_proba(X_negative)
                 if self.confidence_N is None:
                     self.confidence_N = deepcopy([y_pred[..., 0]])
@@ -198,10 +207,10 @@ class MDSampler(object):  # The Classifier Object
                     n_non_empty += 1
 
         for i in range(0, n_sample):
-            if i > 0.5 * len(confidence):
-                break
+            # if i > 0.5 * len(confidence):
+            #     break
             need_break = False
-            for _ in range(0, 100):
+            for _ in range(0, 1000):
                 if need_break:
                     break
                 for j in random.sample(range(0, n_non_empty), n_non_empty):
