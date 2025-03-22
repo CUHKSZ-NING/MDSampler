@@ -33,3 +33,14 @@ MDSampler is a unified framework that integrates SSL, imbalanced learning, and e
 
 ![Result](Result.png)
 **Figure 2.** Decision boundaries and classification performance (AUPRC) of tested algorithms on the imbalanced Two Moons datasets with different levels of Gaussian noises. Blue dots, orange dots, and white dots denote labeled majority samples, labeled minority samples, and unlabeled minority samples, while unlabeled majority samples are not plotted for clarity. MDSampler consistently obtains more favorable decision boundaries and better classification performance. On the other hand, Self-Training, Co-Training, etc,  may fail (perform inferior to the Supervised Only case) on the imbalanced Two Moons datasets.
+
+## Citation
+
+@article{ning2025meta,
+  title={Meta-distribution-based ensemble sampler for imbalanced semi-supervised learning},
+  author={Ning, Zhihan and Guo, Chaoxun and Zhang, David},
+  journal={Pattern Recognition},
+  pages={111552},
+  year={2025},
+  publisher={Elsevier}
+}
